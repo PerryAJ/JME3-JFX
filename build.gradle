@@ -61,3 +61,9 @@ install {
         }
     }
 }
+
+task fatJar(type: Jar) {
+    archiveName = "fat-jme-jfx.jar"
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }}
+    with jar
+}
